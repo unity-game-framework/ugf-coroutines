@@ -23,7 +23,7 @@ UGF.Coroutines
 
 ## Description
 
-No description.
+Provides custom implementation of the coroutines.
 
 ## How to Install
 
