@@ -55,12 +55,14 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
             var executer = new CoroutineExecuterUnity();
 
             Assert.True(executer.MonoBehaviour != null);
+            Assert.True(executer.IsAlive);
 
             executer.Dispose();
 
             yield return null;
 
             Assert.True(executer.MonoBehaviour == null);
+            Assert.False(executer.IsAlive);
         }
 
         [UnityTest]

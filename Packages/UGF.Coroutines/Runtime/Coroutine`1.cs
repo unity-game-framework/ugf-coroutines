@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 namespace UGF.Coroutines.Runtime
 {
+    /// <summary>
+    /// Represents an abstract implementation of the coroutine with a result of the specified type.
+    /// </summary>
     public abstract class Coroutine<TResult> : ICoroutine<TResult>
     {
         public bool IsCompleted { get { return !m_moveNext; } }
@@ -34,6 +37,12 @@ namespace UGF.Coroutines.Runtime
         private IEnumerator m_enumerator;
         private bool m_moveNext = true;
 
+        /// <summary>
+        /// Routine implementation.
+        /// </summary>
+        /// <remarks>
+        /// Use this method to implement custom routine.
+        /// </remarks>
         protected abstract IEnumerator Routine();
 
         bool IEnumerator.MoveNext()
