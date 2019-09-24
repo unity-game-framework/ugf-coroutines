@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace UGF.Coroutines.Runtime.Tests
 {
-    public class TestCoroutine
+    public class TestCoroutineCast
     {
         private class Target
         {
