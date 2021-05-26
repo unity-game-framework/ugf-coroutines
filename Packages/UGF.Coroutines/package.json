@@ -1,12 +1,17 @@
 {
-    "name": "com.ugf.coroutines",
-    "displayName": "UGF.Coroutines",
-    "version": "0.1.0-preview",
-    "unity": "2019.2",
-    "description": "Provides custom implementation of the coroutines.",
-    "author": {
-        "name": "Unity Game Framework",
-        "url": "https://github.com/unity-game-framework"
-    },
-    "dependencies": {}
+  "name": "com.ugf.coroutines",
+  "displayName": "UGF.Coroutines",
+  "version": "0.1.0-preview",
+  "unity": "2019.2",
+  "description": "Provides utilities to work with Unity coroutines.",
+  "author": {
+    "name": "Unity Game Framework",
+    "url": "https://github.com/unity-game-framework"
+  },
+  "dependencies": {},
+  "changelogUrl": "https://github.com/unity-game-framework/ugf-coroutines/blob/main/changelog.md",
+  "licensesUrl": "https://github.com/unity-game-framework/ugf-coroutines/blob/main/license",
+  "repository": {
+    "url": "git://github.com/unity-game-framework/ugf-coroutines.git"
+  }
 }
