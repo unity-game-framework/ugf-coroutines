@@ -28,6 +28,11 @@ namespace UGF.Coroutines.Runtime.Unity
             Object.Destroy(Component);
         }
 
+        public void DestroyGameObject()
+        {
+            Object.Destroy(Component.gameObject);
+        }
+
         protected override void OnSetActive(bool value)
         {
             Component.enabled = value;
