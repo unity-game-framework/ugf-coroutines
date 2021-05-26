@@ -56,7 +56,7 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
             Assert.True(executer.Component != null);
             Assert.True(executer.IsComponentExists);
 
-            executer.DestroyComponent();
+            executer.DestroyGameObject();
 
             yield return null;
 
