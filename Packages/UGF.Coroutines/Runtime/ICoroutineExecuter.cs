@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
+using UGF.Initialize.Runtime;
 
 namespace UGF.Coroutines.Runtime
 {
     /// <summary>
     /// Represents a coroutine executer.
     /// </summary>
-    public interface ICoroutineExecuter
+    public interface ICoroutineExecuter : IInitialize
     {
         bool IsActive { get; }
 

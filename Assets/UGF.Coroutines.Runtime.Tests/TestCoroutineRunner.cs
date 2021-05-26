@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using NUnit.Framework;
 using UGF.Coroutines.Runtime.Unity;
 using UnityEngine.TestTools;
@@ -11,8 +10,10 @@ namespace UGF.Coroutines.Runtime.Tests
         [UnityTest]
         public IEnumerator IsRunning()
         {
-            var executer = new CoroutineExecuterUnity();
+            var executer = new CoroutineExecuterGameObject();
             var runner = new CoroutineRunner(executer);
+
+            executer.Initialize();
 
             runner.Start(WaitForUpdateRoutine(3));
 
@@ -25,14 +26,16 @@ namespace UGF.Coroutines.Runtime.Tests
 
             Assert.False(runner.IsRunning);
 
-            executer.DestroyGameObject();
+            executer.Uninitialize();
         }
 
         [UnityTest]
         public IEnumerator Start()
         {
-            var executer = new CoroutineExecuterUnity();
+            var executer = new CoroutineExecuterGameObject();
             var runner = new CoroutineRunner(executer);
+
+            executer.Initialize();
 
             runner.Start(WaitForUpdateRoutine(2));
 
@@ -51,14 +54,16 @@ namespace UGF.Coroutines.Runtime.Tests
 
             Assert.False(runner.IsRunning);
 
-            executer.DestroyGameObject();
+            executer.Uninitialize();
         }
 
         [UnityTest]
         public IEnumerator Stop()
         {
-            var executer = new CoroutineExecuterUnity();
+            var executer = new CoroutineExecuterGameObject();
             var runner = new CoroutineRunner(executer);
+
+            executer.Initialize();
 
             runner.Start(WaitForUpdateRoutine(10));
 
@@ -77,7 +82,7 @@ namespace UGF.Coroutines.Runtime.Tests
 
             Assert.False(runner.IsRunning);
 
-            executer.DestroyGameObject();
+            executer.Uninitialize();
         }
 
         private IEnumerator WaitForUpdateRoutine(int count)

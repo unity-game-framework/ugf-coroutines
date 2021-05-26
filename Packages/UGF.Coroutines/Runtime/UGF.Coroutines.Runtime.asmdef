@@ -1,7 +1,9 @@
 {
     "name": "UGF.Coroutines.Runtime",
     "rootNamespace": "UGF.Coroutines.Runtime",
-    "references": [],
+    "references": [
+        "GUID:d067af32d09350a4bb33960432735e4d"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

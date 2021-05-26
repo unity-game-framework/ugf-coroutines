@@ -41,22 +41,28 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
         [Test]
         public void Ctor()
         {
-            var executer = new CoroutineExecuterUnity("Executer");
+            var executer = new CoroutineExecuterGameObject("Executer");
+
+            executer.Initialize();
 
             Assert.NotNull(executer.Component);
             Assert.True(executer.Component != null);
             Assert.AreEqual("Executer", executer.Component.gameObject.name);
+
+            executer.Uninitialize();
         }
 
         [UnityTest]
         public IEnumerator Dispose()
         {
-            var executer = new CoroutineExecuterUnity();
+            var executer = new CoroutineExecuterGameObject();
+
+            executer.Initialize();
 
             Assert.True(executer.Component != null);
             Assert.True(executer.IsComponentExists);
 
-            executer.DestroyGameObject();
+            executer.Uninitialize();
 
             yield return null;
 
@@ -66,8 +72,10 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
         [UnityTest]
         public IEnumerator Start()
         {
-            var executer = new CoroutineExecuterUnity();
+            var executer = new CoroutineExecuterGameObject();
             var coroutine = new TestCoroutine();
+
+            executer.Initialize();
 
             Assert.False(coroutine.IsCompleted);
             Assert.False(coroutine.IsStarted);
@@ -84,13 +92,17 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
             Assert.True(coroutine.IsCompleted);
             Assert.True(coroutine.IsStarted);
             Assert.True(coroutine.IsEnded);
+
+            executer.Uninitialize();
         }
 
         [UnityTest]
         public IEnumerator Stop()
         {
-            var executer = new CoroutineExecuterUnity();
+            var executer = new CoroutineExecuterGameObject();
             var coroutine = new TestCoroutine2();
+
+            executer.Initialize();
 
             Assert.False(coroutine.IsCompleted);
             Assert.False(coroutine.IsStarted);
@@ -111,6 +123,8 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
             Assert.False(coroutine.IsCompleted);
             Assert.True(coroutine.IsStarted);
             Assert.False(coroutine.IsEnded);
+
+            executer.Uninitialize();
         }
     }
 }

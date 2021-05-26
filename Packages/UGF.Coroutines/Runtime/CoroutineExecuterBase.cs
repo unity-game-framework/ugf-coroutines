@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections;
+using UGF.Initialize.Runtime;
 
 namespace UGF.Coroutines.Runtime
 {
-    public abstract class CoroutineExecuterBase : ICoroutineExecuter
+    public abstract class CoroutineExecuterBase : InitializeBase, ICoroutineExecuter
     {
         public virtual bool IsActive { get; protected set; }
 
