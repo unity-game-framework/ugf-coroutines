@@ -7,14 +7,13 @@ namespace UGF.Coroutines.Runtime
     /// </summary>
     public abstract class Coroutine : ICoroutine
     {
-        public bool IsCompleted { get { return !m_moveNext; } }
+        public bool IsCompleted { get; private set; }
 
         public event CoroutineHandler Completed;
 
         private IEnumerator m_enumerator;
-        private bool m_moveNext = true;
 
-        object IEnumerator.Current { get { return m_enumerator ?? (m_enumerator = Enumerator()); } }
+        object IEnumerator.Current { get { return m_enumerator ??= Enumerator(); } }
 
         /// <summary>
         /// Routine implementation.
@@ -26,7 +25,7 @@ namespace UGF.Coroutines.Runtime
 
         bool IEnumerator.MoveNext()
         {
-            return m_moveNext;
+            return !IsCompleted;
         }
 
         void IEnumerator.Reset()
@@ -37,7 +36,7 @@ namespace UGF.Coroutines.Runtime
         {
             yield return Routine();
 
-            m_moveNext = false;
+            IsCompleted = true;
 
             Completed?.Invoke(this);
         }

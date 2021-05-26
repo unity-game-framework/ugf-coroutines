@@ -13,7 +13,7 @@ namespace UGF.Coroutines.Runtime.Tests
         {
             protected override IEnumerator Routine()
             {
-                Result = new Target();
+                SetResult(new Target());
 
                 yield break;
             }
@@ -23,7 +23,7 @@ namespace UGF.Coroutines.Runtime.Tests
         {
             protected override IEnumerator Routine()
             {
-                Result = 10;
+                SetResult(10);
 
                 yield break;
             }

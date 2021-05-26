@@ -9,33 +9,19 @@ namespace UGF.Coroutines.Runtime
     /// </summary>
     public abstract class Coroutine<TResult> : ICoroutine<TResult>
     {
-        public bool IsCompleted { get { return !m_moveNext; } }
-
-        public TResult Result
-        {
-            get
-            {
-                if (!HasResult)
-                {
-                    throw new InvalidOperationException($"Coroutine result not specified: '{GetType()}'.");
-                }
-
-                return m_result;
-            }
-            protected set { m_result = value; }
-        }
-
-        public bool HasResult { get { return typeof(TResult).IsValueType || !EqualityComparer<TResult>.Default.Equals(m_result, default); } }
+        public bool IsCompleted { get; private set; }
+        public TResult Result { get { return HasResult ? m_result : throw new InvalidOperationException("Value not specified."); } }
+        public bool HasResult { get { return m_resultType.IsValueType || !EqualityComparer<TResult>.Default.Equals(m_result, default); } }
 
         public event CoroutineHandler<TResult> Completed;
 
         event CoroutineHandler ICoroutine.Completed { add { m_completed += value; } remove { m_completed -= value; } }
-        object IEnumerator.Current { get { return m_enumerator ?? (m_enumerator = Enumerator()); } }
+        object IEnumerator.Current { get { return m_enumerator ??= Enumerator(); } }
 
+        private readonly Type m_resultType = typeof(TResult);
         private TResult m_result;
         private CoroutineHandler m_completed;
         private IEnumerator m_enumerator;
-        private bool m_moveNext = true;
 
         /// <summary>
         /// Routine implementation.
@@ -45,9 +31,21 @@ namespace UGF.Coroutines.Runtime
         /// </remarks>
         protected abstract IEnumerator Routine();
 
+        protected void SetResult(TResult result)
+        {
+            if (m_resultType.IsClass && EqualityComparer<TResult>.Default.Equals(result, default)) throw new ArgumentNullException(nameof(result));
+
+            m_result = result;
+        }
+
+        protected void ClearResult()
+        {
+            m_result = default;
+        }
+
         bool IEnumerator.MoveNext()
         {
-            return m_moveNext;
+            return !IsCompleted;
         }
 
         void IEnumerator.Reset()
@@ -58,7 +56,7 @@ namespace UGF.Coroutines.Runtime
         {
             yield return Routine();
 
-            m_moveNext = false;
+            IsCompleted = true;
 
             Completed?.Invoke(this);
 

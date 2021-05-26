@@ -24,7 +24,7 @@ namespace UGF.Coroutines.Runtime.Tests
 
                 IsEnded = true;
 
-                Result = new Target();
+                SetResult(new Target());
             }
         }
 
