@@ -8,12 +8,12 @@ namespace UGF.Coroutines.Runtime.Unity
     public class CoroutineExecuterUnity : CoroutineExecuterBase
     {
         public override bool IsActive { get { return Component.enabled; } }
-        public CoroutineExecuterUnityComponent Component { get { return m_component ? m_component : throw new InvalidOperationException("Component no longer exists."); } }
+        public MonoBehaviour Component { get { return m_component ? m_component : throw new InvalidOperationException("Component no longer exists."); } }
         public bool IsComponentExists { get { return m_component != null; } }
 
-        private readonly CoroutineExecuterUnityComponent m_component;
+        private readonly MonoBehaviour m_component;
 
-        public CoroutineExecuterUnity(CoroutineExecuterUnityComponent component)
+        public CoroutineExecuterUnity(MonoBehaviour component)
         {
             m_component = component ? component : throw new ArgumentNullException(nameof(component));
         }
