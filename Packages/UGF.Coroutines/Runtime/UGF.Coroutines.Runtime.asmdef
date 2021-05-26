@@ -1,3 +1,14 @@
-﻿{
-	"name": "UGF.Coroutines.Runtime"
+{
+    "name": "UGF.Coroutines.Runtime",
+    "rootNamespace": "UGF.Coroutines.Runtime",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
