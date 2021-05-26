@@ -4,9 +4,9 @@ UGF.Coroutines
 
 ## Info
 
-- **Version**: `0.1.0-preview`
-- **Unity**: `2019.2`
-- **API Compatibility Level**: `undefined`
+- **Version**: `1.0.0-preview`
+- **Unity**: `2021.1`
+- **API Compatibility Level**: `.NET Standard 2.0`
 
 ### Dependencies
 
