@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections;
-using UGF.Coroutines.Runtime.Unity;
-using UnityEngine;
 
 namespace UGF.Coroutines.Runtime
 {
@@ -15,11 +13,6 @@ namespace UGF.Coroutines.Runtime
         public CoroutineRunner(ICoroutineExecuter executer)
         {
             Executer = executer ?? throw new ArgumentNullException(nameof(executer));
-        }
-
-        public CoroutineRunner(MonoBehaviour component)
-        {
-            Executer = new CoroutineExecuterUnity(component);
         }
 
         public void Start(IEnumerator enumerator)
