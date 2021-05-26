@@ -3,15 +3,20 @@
   "displayName": "UGF.Coroutines",
   "version": "0.1.0-preview",
   "unity": "2019.2",
+  "apiCompatibility": ".NET Standard 2.0",
   "description": "Provides utilities to work with Unity coroutines.",
   "author": {
     "name": "Unity Game Framework",
     "url": "https://github.com/unity-game-framework"
   },
-  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/unity-game-framework/ugf-coroutines.git"
+  },
   "changelogUrl": "https://github.com/unity-game-framework/ugf-coroutines/blob/main/changelog.md",
   "licensesUrl": "https://github.com/unity-game-framework/ugf-coroutines/blob/main/license",
-  "repository": {
-    "url": "git://github.com/unity-game-framework/ugf-coroutines.git"
-  }
+  "publishConfig": {
+    "registry": "https://unitygameframework.jfrog.io/artifactory/api/npm/default"
+  },
+  "dependencies": {}
 }
