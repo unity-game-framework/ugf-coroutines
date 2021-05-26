@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 namespace UGF.Coroutines.Runtime
@@ -7,16 +8,29 @@ namespace UGF.Coroutines.Runtime
     /// </summary>
     public interface ICoroutineExecuter
     {
+        bool IsActive { get; }
+
+        event CoroutineEnumeratorHandler Started;
+        event CoroutineEnumeratorHandler Stopped;
+        event Action Cleared;
+
+        void SetActive(bool value);
+
         /// <summary>
         /// Starts the specified routine.
         /// </summary>
-        /// <param name="routine">The routine to start.</param>
-        void Start(IEnumerator routine);
+        /// <param name="enumerator">The routine to start.</param>
+        void Start(IEnumerator enumerator);
 
         /// <summary>
         /// Stops the specified routine.
         /// </summary>
-        /// <param name="routine">The routine to stop.</param>
-        void Stop(IEnumerator routine);
+        /// <param name="enumerator">The routine to stop.</param>
+        void Stop(IEnumerator enumerator);
+
+        /// <summary>
+        /// Clears and stop all coroutines.
+        /// </summary>
+        void Clear();
     }
 }

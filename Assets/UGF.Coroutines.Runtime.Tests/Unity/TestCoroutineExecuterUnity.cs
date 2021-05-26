@@ -43,10 +43,9 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
         {
             var executer = new CoroutineExecuterUnity("Executer");
 
-            Assert.NotNull(executer.MonoBehaviour);
-            Assert.True(executer.MonoBehaviour != null);
-            Assert.AreEqual("Executer", executer.MonoBehaviour.gameObject.name);
-            Assert.False(executer.DontDestroyOnLoad);
+            Assert.NotNull(executer.Component);
+            Assert.True(executer.Component != null);
+            Assert.AreEqual("Executer", executer.Component.gameObject.name);
         }
 
         [UnityTest]
@@ -54,15 +53,14 @@ namespace UGF.Coroutines.Runtime.Tests.Unity
         {
             var executer = new CoroutineExecuterUnity();
 
-            Assert.True(executer.MonoBehaviour != null);
-            Assert.True(executer.IsAlive);
+            Assert.True(executer.Component != null);
+            Assert.True(executer.IsComponentExists);
 
-            executer.Dispose();
+            executer.DestroyComponent();
 
             yield return null;
 
-            Assert.True(executer.MonoBehaviour == null);
-            Assert.False(executer.IsAlive);
+            Assert.False(executer.IsComponentExists);
         }
 
         [UnityTest]

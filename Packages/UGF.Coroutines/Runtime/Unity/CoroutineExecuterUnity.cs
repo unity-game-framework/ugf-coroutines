@@ -5,71 +5,47 @@ using Object = UnityEngine.Object;
 
 namespace UGF.Coroutines.Runtime.Unity
 {
-    /// <summary>
-    /// Represents coroutine executer implementation using Unity coroutine executer.
-    /// </summary>
-    /// <remarks>
-    /// Use the dispose method to destroy created gameObject with component when the executer no needed anymore.
-    /// </remarks>
-    public class CoroutineExecuterUnity : ICoroutineExecuter, IDisposable
+    public class CoroutineExecuterUnity : CoroutineExecuterBase
     {
-        /// <summary>
-        /// Gets the component used to execute coroutines.
-        /// </summary>
-        public CoroutineExecuterUnityMonoBehaviour MonoBehaviour { get; }
+        public override bool IsActive { get { return Component.enabled; } }
+        public CoroutineExecuterUnityComponent Component { get { return m_component ? m_component : throw new InvalidOperationException("Component no longer exists."); } }
+        public bool IsComponentExists { get { return m_component != null; } }
 
-        /// <summary>
-        /// Gets the value that determines whether to don't destroy on load created gameObject.
-        /// </summary>
-        public bool DontDestroyOnLoad { get; }
+        private readonly CoroutineExecuterUnityComponent m_component;
 
-        /// <summary>
-        /// Gets the value that determines whether created gameObject still present and can be used.
-        /// </summary>
-        public bool IsAlive { get { return MonoBehaviour != null; } }
-
-        /// <summary>
-        /// Creates executer with the specified gameObject name.
-        /// </summary>
-        /// <param name="gameObjectName"></param>
-        /// <param name="dontDestroyOnLoad">The value that determines whether to don't destroy on load created gameObject.</param>
-        public CoroutineExecuterUnity(string gameObjectName = "CoroutineExecuterUnity", bool dontDestroyOnLoad = false)
+        public CoroutineExecuterUnity(CoroutineExecuterUnityComponent component)
         {
-            if (gameObjectName == null) throw new ArgumentNullException(nameof(gameObjectName));
-
-            MonoBehaviour = new GameObject(gameObjectName).AddComponent<CoroutineExecuterUnityMonoBehaviour>();
-            DontDestroyOnLoad = dontDestroyOnLoad;
-
-            if (DontDestroyOnLoad)
-            {
-                Object.DontDestroyOnLoad(MonoBehaviour);
-            }
+            m_component = component ? component : throw new ArgumentNullException(nameof(component));
         }
 
-        /// <summary>
-        /// Destroy created gameObject.
-        /// </summary>
-        public void Dispose()
+        public CoroutineExecuterUnity(string gameObjectName = "CoroutineExecuterUnity")
         {
-            if (MonoBehaviour == null) throw new InvalidOperationException("Can't dispose executer: MonoBehaviour already destroyed.");
-
-            Object.Destroy(MonoBehaviour.gameObject);
+            m_component = new GameObject(gameObjectName).AddComponent<CoroutineExecuterUnityComponent>();
         }
 
-        public void Start(IEnumerator routine)
+        public void DestroyComponent()
         {
-            if (routine == null) throw new ArgumentNullException(nameof(routine));
-            if (MonoBehaviour == null) throw new InvalidOperationException("Can't start routine: MonoBehaviour already destroyed.");
-
-            MonoBehaviour.StartCoroutine(routine);
+            Object.Destroy(Component);
         }
 
-        public void Stop(IEnumerator routine)
+        protected override void OnSetActive(bool value)
         {
-            if (routine == null) throw new ArgumentNullException(nameof(routine));
-            if (MonoBehaviour == null) throw new InvalidOperationException("Can't stop routine: MonoBehaviour already destroyed.");
+            Component.enabled = value;
+        }
 
-            MonoBehaviour.StopCoroutine(routine);
+        protected override void OnStart(IEnumerator enumerator)
+        {
+            Component.StartCoroutine(enumerator);
+        }
+
+        protected override void OnStop(IEnumerator enumerator)
+        {
+            Component.StopCoroutine(enumerator);
+        }
+
+        protected override void OnClear()
+        {
+            Component.StopAllCoroutines();
         }
     }
 }
