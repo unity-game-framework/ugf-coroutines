@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-preview.1](https://github.com/unity-game-framework/ugf-coroutines/releases/tag/1.0.0-preview.1) - 2021-05-26  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-coroutines/milestone/3?closed=1)  
+    
+
+### Changed
+
+- Add initialization for executer ([#6](https://github.com/unity-game-framework/ugf-coroutines/pull/6))  
+    - Update dependencies: add `com.ugf.initialize` of `2.6.0` version.
+    - Add `CoroutineExecuterComponent` class to execute coroutines using specified component.
+    - Add `CoroutineExecuterGameObject` class to execute coroutines using created gameobject with component.
+    - Add `CoroutineExecuterComponentBase` base class to implement coroutine executer which works with Unity components.
+    - Change `CoroutineExecuterBase` to implement `InitializeBase` class.
+    - Change `ICoroutineExecuter` to implement `IInitialize` interface.
+    - Change `CoroutineExecuterUnityComponent` class name to `CoroutineExecuterBehaviour`.
+    - Remove `CoroutineExecuterUnity` class, replaced by `CoroutineExecuterComponent` and `CoroutineExecuterGameObject`.
+    - Remove `CoroutineRunner.CoroutineRunner(MonoBehaviour component)` constructor.
+
 ## [1.0.0-preview](https://github.com/unity-game-framework/ugf-coroutines/releases/tag/1.0.0-preview) - 2021-05-26  
 
 ### Release Notes

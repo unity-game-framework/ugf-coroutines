@@ -4,13 +4,13 @@ UGF.Coroutines
 
 ## Info
 
-- **Version**: `1.0.0-preview`
+- **Version**: `1.0.0-preview.1`
 - **Unity**: `2021.1`
 - **API Compatibility Level**: `.NET Standard 2.0`
 
 ### Dependencies
 
-- N/A
+- `com.ugf.initialize`: `2.6.0`
 
 
 ### Description
