@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-preview.3](https://github.com/unity-game-framework/ugf-coroutines/releases/tag/1.0.0-preview.3) - 2021-08-08  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-coroutines/milestone/5?closed=1)  
+    
+
+### Added
+
+- Add coroutine to wait for task with result or not ([#10](https://github.com/unity-game-framework/ugf-coroutines/pull/10))  
+    - Add `CreateCoroutine` and `CreateCoroutine<T>` extension methods for `Task` and `Task<T>` classes to create coroutine to wait for task completion.
+    - Add `TaskCoroutine` and `TaskCoroutine<T>` classes which works with `Task` and `Task<T>` classes.
+
 ## [1.0.0-preview.2](https://github.com/unity-game-framework/ugf-coroutines/releases/tag/1.0.0-preview.2) - 2021-07-06  
 
 ### Release Notes
