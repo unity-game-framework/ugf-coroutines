@@ -5,11 +5,11 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.ugf.initialize": "2.6.0"
+        "com.ugf.initialize": "2.7.0"
       }
     },
     "com.ugf.initialize": {
-      "version": "2.6.0",
+      "version": "2.7.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
