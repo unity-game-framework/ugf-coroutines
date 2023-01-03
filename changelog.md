@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0](https://github.com/unity-game-framework/ugf-coroutines/releases/tag/1.1.0) - 2023-01-03  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-coroutines/milestone/7?closed=1)  
+    
+
+### Added
+
+- Add coroutine runner wait from the task ([#13](https://github.com/unity-game-framework/ugf-coroutines/issues/13))  
+    - Update dependencies: `com.ugf.initialize` to `2.9.0` version.
+    - Update package _Unity_ version to `2021.3`.
+    - Add `CoroutineRunner.RunAsync()` extension method to start coroutine and wait for it end using tasks.
+
 ## [1.0.0](https://github.com/unity-game-framework/ugf-coroutines/releases/tag/1.0.0) - 2022-01-06  
 
 ### Release Notes

@@ -2,15 +2,15 @@
 
 UGF.Coroutines
 
-## Info
+## Information
 
-- **Version**: `1.0.0`
-- **Unity**: `2021.2`
+- **Version**: `1.1.0`
+- **Unity**: `2021.3`
 - **API Compatibility Level**: `.NET Standard 2.1`
 
 ### Dependencies
 
-- `com.ugf.initialize`: `2.7.0`
+- `com.ugf.initialize`: `2.9.0`
 
 
 ### Description
